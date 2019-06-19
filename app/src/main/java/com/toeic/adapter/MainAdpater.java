@@ -1,5 +1,7 @@
 package com.toeic.adapter;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -61,6 +63,7 @@ public class MainAdpater extends RecyclerView.Adapter<MainAdpater.MyViewHolder>{
                         mContext.startActivity(intent2);
                         break;
                     case 3:
+
                         break;
                 }
 

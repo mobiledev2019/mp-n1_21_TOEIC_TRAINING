@@ -2,7 +2,6 @@ package com.toeic.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.toeic.R;
-import com.toeic.activity.lesson.lesson_part1;
+import com.toeic.activity.lesson.practice_part1;
 import com.toeic.model.Unit;
 
 import java.util.List;
@@ -47,7 +46,8 @@ public class LessonAdpater extends RecyclerView.Adapter<LessonAdpater.MyViewHold
         myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, lesson_part1.class);
+                Intent intent = new Intent(mContext, practice_part1.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });

@@ -1,49 +1,67 @@
 package com.toeic.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
-
-import java.lang.ref.SoftReference;
-
-@Entity(tableName = "words")
 public class Word {
-    @PrimaryKey(autoGenerate = true)
     private int id;
-    @ColumnInfo(name = "word")
-    private String  word;
-    @ColumnInfo(name = "description")
-    private SoftReference description;
+    private int mem;
+    private String en;
+    private String vn;
+    private String vn_f1;
+    private String vn_f2;
 
-    @Ignore
-    public Word(int id, String word, SoftReference description) {
+    public Word(int id, int mem, String en, String vn, String vn_f1, String vn_f2) {
         this.id = id;
-        this.word = word;
-        this.description = description;
+        this.mem = mem;
+        this.en = en;
+        this.vn = vn;
+        this.vn_f1 = vn_f1;
+        this.vn_f2 = vn_f2;
     }
-    @Ignore
+
     public int getId() {
         return id;
     }
-    @Ignore
+
     public void setId(int id) {
         this.id = id;
     }
-    @Ignore
-    public String getWord() {
-        return word;
+
+    public int getMem() {
+        return mem;
     }
-    @Ignore
-    public void setWord(String word) {
-        this.word = word;
+
+    public void setMem(int mem) {
+        this.mem = mem;
     }
-    @Ignore
-    public SoftReference getDescription() {
-        return description;
+
+    public String getEn() {
+        return en;
     }
-    @Ignore
-    public void setDescription(SoftReference description) {
-        this.description = description;
+
+    public void setEn(String en) {
+        this.en = en;
+    }
+
+    public String getVn() {
+        return vn;
+    }
+
+    public void setVn(String vn) {
+        this.vn = vn;
+    }
+
+    public String getVn_f1() {
+        return vn_f1;
+    }
+
+    public void setVn_f1(String vn_f1) {
+        this.vn_f1 = vn_f1;
+    }
+
+    public String getVn_f2() {
+        return vn_f2;
+    }
+
+    public void setVn_f2(String vn_f2) {
+        this.vn_f2 = vn_f2;
     }
 }

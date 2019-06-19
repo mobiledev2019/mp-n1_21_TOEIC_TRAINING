@@ -8,42 +8,44 @@
     tools:ignore="Orientation">
 
     <LinearLayout
-        android:weightSum="3"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_header_height"
+        android:layout_height="83dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
         tools:ignore="MissingConstraints">
+
         <Button
             android:id="@+id/btnView"
-            android:layout_marginRight="5dp"
-            android:background="@color/cardview_shadow_end_color"
-            android:text="Ex 1/10"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:onClick="btnList"
-            android:id="@+id/btnList"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:background="@drawable/bg_button_lesson"
-            android:text="List"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/cardview_shadow_end_color"
+            android:text="Ex 1/10" />
+
         <Button
-            android:onClick="btnExit"
-            android:textSize="20sp"
+            android:id="@+id/btnList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_lesson"
+            android:gravity="center"
+            android:onClick="btnList"
+            android:text="List"
+            android:textColor="#fff" />
+
+        <Button
             android:id="@+id/btnExit"
-            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:gravity="right"
-            android:text="X"
             android:background="#fff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:onClick="btnExit"
+            android:text="X"
+            android:textSize="20sp"
+            android:textStyle="bold"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
     <LinearLayout
@@ -51,12 +53,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
+
         <ImageView
-            android:layout_marginTop="10dp"
             android:id="@+id/imgPicture"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:src="@drawable/img_part12"/>
+            android:layout_marginTop="10dp"
+            android:src="@drawable/img_part12" />
         <RadioGroup
             android:paddingLeft="50dp"
             android:gravity="left"
