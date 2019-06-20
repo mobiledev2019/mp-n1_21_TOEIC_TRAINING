@@ -1,6 +1,8 @@
 package com.toeic.activity.lesson;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -46,6 +48,13 @@ public class practice_part1 extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+
+    private Dialog dialog;
+    private Button btnLogout;
+
+    private ArrayList listAnwer;
+    private int totalAnswer = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,10 +87,10 @@ public class practice_part1 extends AppCompatActivity {
         sharedPreferences
                 = getApplicationContext().getSharedPreferences("answer_part1", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        editor.clear();
 
         playMediaPlayer(listPart1.get(0).getAudio());
 //        this.mediaPlayer.start();
-        save(1);
     }
 
     private void initPart1() {
@@ -261,9 +270,40 @@ public class practice_part1 extends AppCompatActivity {
     }
 
     public void submit(View view) {
-        clearCheck();
+        Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+        scope();
+
+//        this.seekBar.setProgress(0);
     }
 
+    public int getPoint() {
+        int scope = 0;
+        for (int i = 0; i < listPart1.size(); i++) {
+            if (sharedPreferences.contains(String.valueOf(i))) {
+                if (listPart1.get(i).getAnswer().equals(sharedPreferences.getString(String.valueOf(i), ""))) {
+                    scope++;
+                }
+            }
+        }
+
+        Log.d("scope", "" + scope);
+        return scope;
+    }
+    public void scope() {
+        Intent intent = new Intent(getApplicationContext(), getPoint.class);
+
+        intent.putExtra("title", "Test 1");
+        intent.putExtra("scope", String.valueOf(getPoint()));
+        intent.putExtra("anwser", String.valueOf(totalAnswer));
+        this.startActivity(intent);
+    }
+
+    public void showDialog() {
+        dialog = new Dialog(getApplicationContext());
+        dialog.setTitle("Thangcode.com");
+        dialog.setContentView(R.layout.dialog_get_point);
+        dialog.show();
+    }
 
     // Thread sử dụng để Update trạng thái cho SeekBar.
     class UpdateSeekBarThread implements Runnable {
@@ -291,6 +331,7 @@ public class practice_part1 extends AppCompatActivity {
                     img_part1.setImageResource(listPart1.get(index).getImages());
                     playMediaPlayer(listPart1.get(index).getAudio());
                     setSeekBar();
+                    clearCheck();
                 } else {
                     Toast.makeText(practice_part1.this, "Finish practice part1", Toast.LENGTH_SHORT).show();
                 }
@@ -308,25 +349,25 @@ public class practice_part1 extends AppCompatActivity {
                 switch(checkedId){
                     case R.id.radioOptionA:
                         editor.putString(String.valueOf(index), "A");
-                        Log.d("option", sharedPreferences.getString(String.valueOf(index), "String"));
                         // do operations specific to this selection
                         break;
                     case R.id.radioOptionB:
                         editor.putString(String.valueOf(index), "B");
-                        Log.d("option", sharedPreferences.getString(String.valueOf(index), ""));
                         // do operations specific to this selection
                         break;
                     case R.id.radioOptionC:
                         editor.putString(String.valueOf(index), "C");
-                        Log.d("option", sharedPreferences.getString(String.valueOf(index), ""));
                         // do operations specific to this selection
                         break;
                     case R.id.radioOptionD:
                         editor.putString(String.valueOf(index), "D");
-                        Log.d("option", sharedPreferences.getString(String.valueOf(index), ""));
                         // do operations specific to this selection
                         break;
                 }
+                totalAnswer++;
+                editor.commit();
+                Log.d("option", sharedPreferences.getString(String.valueOf(index), ""));
+
             }
         });
 

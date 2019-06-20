@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.lesson.practice_part1"></activity>
+        <activity android:name=".activity.lesson.lesson_part3"></activity>
+        <activity android:name=".activity.part3" />
+        <activity android:name=".activity.lesson.lesson_part2" />
+        <activity android:name=".activity.part2" />
+        <activity android:name=".activity.lesson.getPoint" />
+        <activity android:name=".activity.lesson.practice_part1" />
         <activity android:name=".activity.words" />
         <activity android:name=".activity.part1" />
         <activity android:name=".activity.lesson.lesson_part1" />

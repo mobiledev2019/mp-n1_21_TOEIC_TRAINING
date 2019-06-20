@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.toeic.R;
 import com.toeic.activity.part1;
+import com.toeic.activity.part2;
+import com.toeic.activity.part3;
 import com.toeic.config.Item;
 
 import java.util.List;
@@ -53,12 +56,12 @@ public class MainAdpater extends RecyclerView.Adapter<MainAdpater.MyViewHolder>{
                         mContext.startActivity(intent);
                         break;
                     case 1:
-                        Intent intent1 = new Intent(mContext, part1.class);
+                        Intent intent1 = new Intent(mContext, part2.class);
                         intent1.putExtra("title", mData.get(i).getTitle());
                         mContext.startActivity(intent1);
                         break;
                     case 2:
-                        Intent intent2 = new Intent(mContext, part1.class);
+                        Intent intent2 = new Intent(mContext, part3.class);
                         intent2.putExtra("title", mData.get(i).getTitle());
                         mContext.startActivity(intent2);
                         break;
