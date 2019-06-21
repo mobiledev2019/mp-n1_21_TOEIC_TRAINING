@@ -1,9 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:padding="10dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.lesson.lesson_part3">
+    tools:context=".activity.lesson.lesson_part3"
+    tools:ignore="Orientation">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Question1: abc....?"></TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="68dp"
+            android:gravity="left"
+            app:layout_constraintTop_toTopOf="@+id/btnPrevious"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="10dp">
+            <RadioButton
+                android:id="@+id/radioOptionA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A"
+                tools:ignore="DuplicateIds" />
+
+            <RadioButton
+                android:id="@+id/radioOptionB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B"
+                tools:ignore="DuplicateIds" />
+
+            <RadioButton
+                android:id="@+id/radioOptionC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C"
+                tools:ignore="DuplicateIds" />
+
+            <RadioButton
+                android:id="@+id/radioOptionD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D"
+                tools:ignore="DuplicateIds" />
+
+
+
+        </RadioGroup>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Question2: abc....?"></TextView>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="68dp"
+            android:gravity="left"
+            app:layout_constraintTop_toTopOf="@+id/btnPrevious"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="10dp">
+
+            <RadioButton
+                android:id="@+id/radioOptionA1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A"
+                tools:ignore="DuplicateIds" />
+
+            <RadioButton
+                android:id="@+id/radioOptionB1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B"
+                tools:ignore="DuplicateIds" />
+
+            <RadioButton
+                android:id="@+id/radioOptionC1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C"
+                tools:ignore="DuplicateIds" />
+
+            <RadioButton
+                android:id="@+id/radioOptionD1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D"
+                tools:ignore="DuplicateIds" />
+
+
+
+        </RadioGroup>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Question3: abc....?"></TextView>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="68dp"
+            android:gravity="left"
+            app:layout_constraintTop_toTopOf="@+id/btnPrevious"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="10dp">
+            <RadioButton
+                android:id="@+id/radioOptionA2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A"
+                tools:ignore="DuplicateIds" />
+
+            <RadioButton
+                android:id="@+id/radioOptionB2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B"
+                tools:ignore="DuplicateIds" />
+
+            <RadioButton
+                android:id="@+id/radioOptionC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C"
+                tools:ignore="DuplicateIds" />
+
+            <RadioButton
+                android:id="@+id/radioOptionD2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D"
+                tools:ignore="DuplicateIds" />
+
+
+
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:thumb="@drawable/custome_thumb"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-5dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="96dp"
+        android:gravity="center"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-5dp">
+
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="doStart"
+            android:text="start"
+            tools:ignore="OnClick"
+            android:background="@color/colorGreen"/>
+        <Button
+            android:background="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:onClick="submit"
+            tools:ignore="OnClick" />
+        <Button
+            android:background="@color/colorPrimaryDark"
+            android:text="Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/textView_currentPosion"
+        android:layout_marginTop="65dp"
+        android:gravity="center"
+        android:layout_below="@+id/textView_maxTime"
+        android:layout_centerHorizontal="true"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/textView_maxTime"
+        android:layout_below="@+id/seekBar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="38dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        tools:ignore="MissingConstraints" />
+</LinearLayout>

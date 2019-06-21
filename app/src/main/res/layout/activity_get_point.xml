@@ -12,20 +12,34 @@
         android:textSize="20sp"
         android:text="Unit 1: Luyện nghe các loại câu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="10dp"/>
 
     
     <TextView
-        android:id="@+id/answer"
         android:padding="10dp"
         android:text="@string/caudatraloi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="InvalidId" />
     <TextView
-        android:id="@+id/scope"
+        android:id="@+id/answer"
+        android:padding="10dp"
+        android:text="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="InvalidId"
+        />
+    <TextView
         android:padding="10dp"
         android:text="@string/caudung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="InvalidId" />
+    <TextView
+        android:id="@+id/scope"
+        android:padding="10dp"
+        android:text="0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="InvalidId" />

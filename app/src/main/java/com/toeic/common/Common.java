@@ -10,7 +10,7 @@ public class Common {
 //    static String ip = "192.168.0.113";
 //    static String ip = "192.168.8.104";
 //    static String ip = "192.168.43.230";
-    static String ip = "http://192.168.0.101";
+    static String ip = "192.168.0.101";
 
     public static String getNew() {
         String url = "http://" + ip + "/English/public/get-all-word/5";
@@ -27,8 +27,8 @@ public class Common {
         return url;
     }
 
-    public static String getUrlListPostsUser() {
-        String url = "http://" + ip + "/english/public/list-posts-users/";
+    public static String getWord() {
+        String url = "http://" + ip + "/laravel/public/word";
         return url;
     }
 

@@ -2,6 +2,7 @@ package com.toeic;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.toeic.activity.part2;
+import com.toeic.activity.words;
 import com.toeic.adapter.MainAdpater;
 import com.toeic.config.Item;
 import com.toeic.fragment.FragmentHome;
@@ -53,16 +56,16 @@ public class MainActivity extends AppCompatActivity
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        int id = menuItem.getItemId();
-                        Toast.makeText(getApplication(), "abc", Toast.LENGTH_LONG).show();
-                        Log.d("id", String.valueOf(id));
-                        return true;
-                    }
-                });
+//        navigationView.setNavigationItemSelectedListener(
+//                new NavigationView.OnNavigationItemSelectedListener() {
+//                    @Override
+//                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                        int id = menuItem.getItemId();
+//                        Toast.makeText(getApplication(), "abc", Toast.LENGTH_LONG).show();
+//                        Log.d("id", String.valueOf(id));
+//                        return true;
+//                    }
+//                });
 
         initWidget();
 
@@ -121,11 +124,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        Log.d("id", String.valueOf(id));
+        Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            Toast.makeText(MainActivity.this, "thuy an cut", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this, "thuy an cut", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -141,4 +145,14 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void clickWords(View view) {
+        Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+        Intent intent1 = new Intent(getApplicationContext(), words.class);
+        this.startActivity(intent1);
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        FragmentHome fragmentHome = new FragmentHome();
+//        fragmentTransaction.replace(R.id.content,fragmentHome);
+//        fragmentTransaction.commit();
+    }
 }

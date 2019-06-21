@@ -1,5 +1,8 @@
 package com.toeic.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.toeic.R;
+import com.toeic.activity.lesson.lesson_words;
 import com.toeic.common.Common;
 import com.toeic.model.WordAnswer;
 
@@ -19,7 +23,7 @@ import java.util.List;
 public class ListWordRSAdapter extends RecyclerView.Adapter<ListWordRSAdapter.RecyclerViewHolder>{
 
     private List<WordAnswer> data = new ArrayList<>();
-
+    private Context mContext;
     Animation animation;
     ViewGroup view;
     Common cm;
@@ -50,7 +54,14 @@ public class ListWordRSAdapter extends RecyclerView.Adapter<ListWordRSAdapter.Re
 
         holder.txt_rs.setText(result);
         holder.txt_user_2.setText(""+ position);
-
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, lesson_words.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -65,12 +76,12 @@ public class ListWordRSAdapter extends RecyclerView.Adapter<ListWordRSAdapter.Re
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView txt_user_2, txt_rs;
         ImageView imgPost, imgHeart;
+        CardView cardView;
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             txt_user_2 = (TextView) itemView.findViewById(R.id.txt_user_2);
             txt_rs = (TextView) itemView.findViewById(R.id.message_content);
-
-
+            cardView = (CardView) itemView.findViewById(R.id.cardview_id);
         }
     }
 

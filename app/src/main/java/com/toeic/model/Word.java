@@ -17,6 +17,11 @@ public class Word {
         this.vn_f2 = vn_f2;
     }
 
+    public Word(String en, String vn) {
+        this.en = en;
+        this.vn = vn;
+    }
+
     public int getId() {
         return id;
     }

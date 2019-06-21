@@ -9,6 +9,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main"
+    android:background="@color/cardview_light_background"
     android:weightSum="10"
     >
 
@@ -17,12 +18,42 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:ignore="MissingConstraints">
+
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#fcfcfc"
             android:gravity="center"
             >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+                    android:onClick="clickWords"
+                    android:layout_gravity="center"
+                    android:id="@+id/item_img_id"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:background="#2d2d2d"
+                    android:src="@drawable/words"
+                    tools:ignore="OnClick" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:id="@+id/item_title_id"
+                    android:textColor="#2d2d2d"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="1000 từ vựng"/>
+
+            </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycleview_id"
                 android:layout_width="match_parent"

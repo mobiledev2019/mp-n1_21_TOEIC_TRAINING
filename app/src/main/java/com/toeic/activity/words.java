@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.toeic.R;
 import com.toeic.adapter.LessonAdpater;
+import com.toeic.adapter.LessonUnitWord;
 import com.toeic.model.Unit;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class words extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_words);
         init();
     }
     private void init() {
@@ -36,8 +38,7 @@ public class words extends AppCompatActivity {
         unitList.add(new Unit(5, R.drawable.img_vat, "Chủ đề 6: Computers", "Bạn chưa học bài này"));
 
         RecyclerView myrv  = (RecyclerView) findViewById(R.id.recycleview_id);
-        LessonAdpater myAdapter = new LessonAdpater(this, unitList);
-
+        LessonUnitWord myAdapter = new LessonUnitWord(this, unitList);
         myrv.setLayoutManager(new GridLayoutManager(this, 1));
         myrv.setAdapter(myAdapter);
     }
