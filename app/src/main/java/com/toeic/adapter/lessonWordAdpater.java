@@ -36,7 +36,8 @@ public class lessonWordAdpater extends RecyclerView.Adapter<lessonWordAdpater.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-
+        myViewHolder.en.setText(mData.get(i).getEn());
+        myViewHolder.vn.setText(mData.get(i).getVn());
     }
 
 

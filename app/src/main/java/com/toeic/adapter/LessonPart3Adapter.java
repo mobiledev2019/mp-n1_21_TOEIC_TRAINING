@@ -1,7 +1,5 @@
 package com.toeic.adapter;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -11,65 +9,47 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.toeic.R;
-import com.toeic.activity.part1;
-import com.toeic.activity.part2;
-import com.toeic.activity.part3;
-import com.toeic.config.Item;
+import com.toeic.activity.lesson.lesson_part2;
+import com.toeic.activity.lesson.lesson_part3;
+import com.toeic.model.Unit;
 
 import java.util.List;
 
-public class MainAdpater extends RecyclerView.Adapter<MainAdpater.MyViewHolder>{
+public class LessonPart3Adapter  extends RecyclerView.Adapter<LessonPart3Adapter.MyViewHolder>{
     private Context mContext;
-    private List<Item> mData;
+    private List<Unit> mData;
 
-    public MainAdpater(Context mContext, List<Item> mData) {
+    public LessonPart3Adapter(Context mContext, List<Unit> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public LessonPart3Adapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view ;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        view = inflater.inflate((R.layout.card_item_main_menu), viewGroup, false);
+        view = inflater.inflate((R.layout.cart_item_lesson), viewGroup, false);
 
-        return new MyViewHolder(view);
+        return new LessonPart3Adapter.MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, final int i) {
 
         myViewHolder.tv_item_title.setText(mData.get(i).getTitle());
+        myViewHolder.tv_item_descripton.setText(mData.get(i).getDescription());
         myViewHolder.iv_item_img.setImageResource(mData.get(i).getAvatar());
+
 
         // set click listener
         myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (i) {
-                    case  0:
-                        Intent intent = new Intent(mContext, part1.class);
-                        intent.putExtra("part1", mData.get(i).getTitle());
-                        mContext.startActivity(intent);
-                        break;
-                    case 1:
-                        Intent intent1 = new Intent(mContext, part2.class);
-                        intent1.putExtra("part2", mData.get(i).getTitle());
-                        mContext.startActivity(intent1);
-                        break;
-                    case 2:
-                        Intent intent2 = new Intent(mContext, part3.class);
-                        intent2.putExtra("part3", mData.get(i).getTitle());
-                        mContext.startActivity(intent2);
-                        break;
-                    case 3:
-
-                        break;
-                }
-
+                Intent intent = new Intent(mContext, lesson_part3.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
             }
         });
     }
@@ -82,6 +62,7 @@ public class MainAdpater extends RecyclerView.Adapter<MainAdpater.MyViewHolder>{
     public static class MyViewHolder extends  RecyclerView.ViewHolder {
 
         TextView tv_item_title;
+        TextView tv_item_descripton;
         ImageView iv_item_img;
         CardView cardView;
 
@@ -89,9 +70,11 @@ public class MainAdpater extends RecyclerView.Adapter<MainAdpater.MyViewHolder>{
             super(itemView);
 
             tv_item_title = (TextView) itemView.findViewById(R.id.item_title_id);
+            tv_item_descripton = (TextView) itemView.findViewById(R.id.item_description) ;
             iv_item_img = (ImageView) itemView.findViewById(R.id.item_img_id);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
 
         }
     }
 }
+

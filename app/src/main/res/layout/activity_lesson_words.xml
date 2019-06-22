@@ -16,6 +16,15 @@
             android:background="#fcfcfc"
             android:gravity="center"
             >
+            <Button
+                android:onClick="game"
+                android:textColor="@color/colorWhite"
+                android:background="@color/colorGreen"
+                android:text="Thông báo học từ mới"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ></Button>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycleview_id"
                 android:layout_width="match_parent"

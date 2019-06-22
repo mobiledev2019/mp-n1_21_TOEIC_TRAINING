@@ -26,11 +26,12 @@
             android:layout_height="32dp"
             android:gravity="center"
             android:text="English"
-            android:textColor="@color/colorBlueFace"
+            android:textColor="#5139DC"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
+            android:textColor="@color/cardview_dark_background"
             android:layout_weight="5"
             android:gravity="center"
             android:id="@+id/vn"

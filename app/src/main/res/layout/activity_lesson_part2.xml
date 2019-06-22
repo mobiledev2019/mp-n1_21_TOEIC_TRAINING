@@ -10,146 +10,54 @@
     tools:context=".activity.lesson.lesson_part2"
     tools:ignore="Orientation">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <Button
+        android:background="@color/colorPrimary"
+        android:onClick="listQuestion"
+        android:text="List"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:layout_width="match_parent"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/img_part1"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="5dp">
+
+        <RadioButton
+            android:id="@+id/radioOptionA"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Question1: abc....?"></TextView>
+            android:text="A"
+            tools:ignore="DuplicateIds"/>
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/radioOptionB"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="68dp"
-            android:gravity="left"
-            app:layout_constraintTop_toTopOf="@+id/btnPrevious"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="10dp">
+            android:text="B"
+            tools:ignore="DuplicateIds"/>
 
-            <RadioButton
-                android:id="@+id/radioOptionB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="B"
-                tools:ignore="DuplicateIds" />
-
-            <RadioButton
-                android:id="@+id/radioOptionC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="C"
-                tools:ignore="DuplicateIds" />
-
-            <RadioButton
-                android:id="@+id/radioOptionD"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="D"
-                tools:ignore="DuplicateIds" />
-
-            <RadioButton
-                android:id="@+id/radioOptionA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A"
-                tools:ignore="DuplicateIds" />
-
-        </RadioGroup>
-        <TextView
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/radioOptionC"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Question2: abc....?"></TextView>
+            android:text="C"
+            tools:ignore="DuplicateIds" />
 
-        <RadioGroup
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/radioOptionD"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="68dp"
-            android:gravity="left"
-            app:layout_constraintTop_toTopOf="@+id/btnPrevious"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="10dp">
+            android:text="D"
+            tools:ignore="DuplicateIds" />
 
-            <RadioButton
-                android:id="@+id/radioOptionB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="B"
-                tools:ignore="DuplicateIds" />
-
-            <RadioButton
-                android:id="@+id/radioOptionC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="C"
-                tools:ignore="DuplicateIds" />
-
-            <RadioButton
-                android:id="@+id/radioOptionD"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="D"
-                tools:ignore="DuplicateIds" />
-
-            <RadioButton
-                android:id="@+id/radioOptionA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A"
-                tools:ignore="DuplicateIds" />
-
-        </RadioGroup>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Question3: abc....?"></TextView>
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="68dp"
-            android:gravity="left"
-            app:layout_constraintTop_toTopOf="@+id/btnPrevious"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="10dp">
-
-            <RadioButton
-                android:id="@+id/radioOptionB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="B"
-                tools:ignore="DuplicateIds" />
-
-            <RadioButton
-                android:id="@+id/radioOptionC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="C"
-                tools:ignore="DuplicateIds" />
-
-            <RadioButton
-                android:id="@+id/radioOptionD"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="D"
-                tools:ignore="DuplicateIds" />
-
-            <RadioButton
-                android:id="@+id/radioOptionA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A"
-                tools:ignore="DuplicateIds" />
-
-        </RadioGroup>
-    </LinearLayout>
-
+    </RadioGroup>
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -189,11 +97,6 @@
             android:text="Submit"
             android:onClick="submit"
             tools:ignore="OnClick" />
-        <Button
-            android:background="@color/colorPrimaryDark"
-            android:text="Next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
     <TextView

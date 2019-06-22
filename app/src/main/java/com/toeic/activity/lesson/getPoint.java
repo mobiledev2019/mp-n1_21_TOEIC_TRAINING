@@ -22,7 +22,10 @@ public class getPoint extends AppCompatActivity {
         String scope = intent.getStringExtra("scope");
 
         txtTitle.setText(title);
-        txtAnswer.setText(answer);
+        if(answer != null) {
+            txtAnswer.setText(answer);
+        }
+        txtAnswer.setText("0");
         txtScope.setText(scope);
     }
 

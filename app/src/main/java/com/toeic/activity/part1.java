@@ -48,7 +48,7 @@ public class part1 extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        GetData("http://192.168.0.101/laravel/public/test");
+        GetData(common.getUnit());
     }
 
     private void GetData(String url) {

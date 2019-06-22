@@ -1,19 +1,19 @@
 package com.toeic.activity.lesson;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.toeic.R;
 import com.toeic.model.part1;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -31,14 +33,13 @@ import java.util.concurrent.TimeUnit;
 public class practice_part1 extends AppCompatActivity {
 
     private Button start, pause, next;
-    private Button btn1, btn2, btn3, btn4, btn5;
-    private Button btnNext , btnPrevious;
     private ImageView img_part1;
     private SeekBar seekBar;
     private MediaPlayer mediaPlayer;
     private Handler threadHandler = new Handler();
     private TextView textMaxTime;
     private TextView textCurrentPosition;
+    private static TextView txtQuestion;
     private List<part1> listPart1;
     private List answer;
     static  int index=0;
@@ -52,8 +53,23 @@ public class practice_part1 extends AppCompatActivity {
     private Dialog dialog;
     private Button btnLogout;
 
-    private ArrayList listAnwer;
-    private int totalAnswer = 0;
+    private static String[] listAnwer;
+    private static int totalAnswer = 0;
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mediaPlayer.pause();
+        index = 0;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mediaPlayer.pause();
+        index = 0;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,21 +79,12 @@ public class practice_part1 extends AppCompatActivity {
         initPart1();
         img_part1 = (ImageView) findViewById(R.id.img_part1);
 
-        btn1 = findViewById(R.id.btn1);
-        btn2 = findViewById(R.id.btn2);
-        btn3 = findViewById(R.id.btn3);
-        btn4 = findViewById(R.id.btn4);
-        btn5 = findViewById(R.id.btn5);
-        btnNext = findViewById(R.id.btnNext);
-        btnPrevious = findViewById(R.id.btnPrevious);
-        btnPrevious.setEnabled(false);
-
         radioGroup = findViewById(R.id.radioGroup);
         radioOptionA = findViewById(R.id.radioOptionA);
         radioOptionB = findViewById(R.id.radioOptionB);
         radioOptionC = findViewById(R.id.radioOptionC);
         radioOptionD = findViewById(R.id.radioOptionD);
-
+        txtQuestion = findViewById(R.id.question);
         this.textCurrentPosition = (TextView)this.findViewById(R.id.textView_currentPosion);
         this.textMaxTime=(TextView) this.findViewById(R.id.textView_maxTime);
         start = (Button) findViewById(R.id.button1);
@@ -89,11 +96,12 @@ public class practice_part1 extends AppCompatActivity {
         editor = sharedPreferences.edit();
         editor.clear();
 
-        playMediaPlayer(listPart1.get(0).getAudio());
+//        playMediaPlayer(listPart1.get(0).getAudio());
 //        this.mediaPlayer.start();
     }
 
     private void initPart1() {
+        listAnwer = new String[100];
         listPart1 = new ArrayList();
         listPart1.add(new part1("1", R.drawable.img_part12, R.raw.part1,"A"));
         listPart1.add(new part1("3", R.drawable.img_part1, R.raw.part1_2,"B"));
@@ -127,7 +135,7 @@ public class practice_part1 extends AppCompatActivity {
 
     // Khi người dùng click vào Button "Start".
     public void doStart(View view)  {
-
+        playMediaPlayer(listPart1.get(0).getAudio());
         // Khoảng thời gian của bài hát (Tính theo mili giây).
         int duration = this.mediaPlayer.getDuration();
 
@@ -189,98 +197,18 @@ public class practice_part1 extends AppCompatActivity {
         this.start.setEnabled(false);
     }
 
-    public void previous(View view) {
-        if(index > 1) {
-            btnNext.setEnabled(true);
-            index--;
-            qu1--;
-            qu2--;
-            qu3--;
-            qu4--;
-            qu5--;
-            setButton();
 
-        } else {
-            btnPrevious.setEnabled(false);
-        }
-
-    }
-
-    private void setButton()
-    {
-
-        btn1.setText(String.valueOf(qu1));
-        btn2.setText(String.valueOf(qu2));
-        btn3.setText(String.valueOf(qu3));
-        btn4.setText(String.valueOf(qu4));
-        btn5.setText(String.valueOf(qu5));
-    }
-
-    public void next(View view) {
-        if(index < 9) {
-            btnPrevious.setEnabled(true);
-            index++;
-            qu1++;
-            qu2++;
-            qu3++;
-            qu4++;
-            qu5++;
-            setButton();
-
-        } else {
-            btnNext.setEnabled(false);
-        }
-    }
-
-    public void btn1(View view) {
-
-        img_part1.setImageResource(listPart1.get(qu1).getImages());
-        Toast.makeText(this, listPart1.get(qu1).getId(), Toast.LENGTH_SHORT).show();
-//        playMediaPlayer(listPart1.get(qu1).getAudio());
-//        setSeekBar();
-    }
-
-    public void btn2(View view) {
-        mediaPlayer.stop();
-        img_part1.setImageResource(listPart1.get(qu2).getImages());
-        playMediaPlayer(listPart1.get(qu2).getAudio());
-        setSeekBar();
-    }
-
-    public void btn3(View view) {
-
-        mediaPlayer.stop();
-        img_part1.setImageResource(listPart1.get(qu3).getImages());
-        playMediaPlayer(listPart1.get(qu3).getAudio());
-        setSeekBar();
-    }
-
-    public void btn4(View view) {
-        mediaPlayer.stop();
-        img_part1.setImageResource(listPart1.get(qu4).getImages());
-        playMediaPlayer(listPart1.get(qu4).getAudio());
-        setSeekBar();
-    }
-
-    public void btn5(View view) {
-        mediaPlayer.stop();
-        img_part1.setImageResource(listPart1.get(qu5).getImages());
-        playMediaPlayer(listPart1.get(qu5).getAudio());
-        setSeekBar();
-    }
 
     public void submit(View view) {
-        Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
         scope();
-
-//        this.seekBar.setProgress(0);
     }
 
     public int getPoint() {
         int scope = 0;
         for (int i = 0; i < listPart1.size(); i++) {
-            if (sharedPreferences.contains(String.valueOf(i))) {
-                if (listPart1.get(i).getAnswer().equals(sharedPreferences.getString(String.valueOf(i), ""))) {
+            if (listAnwer[i] != null) {
+                totalAnswer++;
+                if (listPart1.get(i).getAnswer().equals(listAnwer[i])) {
                     scope++;
                 }
             }
@@ -298,10 +226,107 @@ public class practice_part1 extends AppCompatActivity {
         this.startActivity(intent);
     }
 
-    public void showDialog() {
-        dialog = new Dialog(getApplicationContext());
-        dialog.setTitle("Thangcode.com");
-        dialog.setContentView(R.layout.dialog_get_point);
+    public void listQuestion(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("List question");
+        String[] question = {"Question 1",
+                "Question 2",
+                "Question 3",
+                "Question 4",
+                "Question 5",
+                "Question 6",
+                "Question 7",
+                "Question 8",
+                "Question 9",
+                "Question 10"};
+        builder.setItems(question, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        index=0;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 1:");
+                        img_part1.setImageResource(listPart1.get(0).getImages());
+                        playMediaPlayer(listPart1.get(0).getAudio());
+                        setSeekBar();
+                        break;
+                    case 1:
+                        index = 1;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 2:");
+                        img_part1.setImageResource(listPart1.get(1).getImages());
+                        playMediaPlayer(listPart1.get(1).getAudio());
+                        setSeekBar();
+                        break;
+                    case 2:
+                        index = 2;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 3:");
+                        img_part1.setImageResource(listPart1.get(2).getImages());
+                        playMediaPlayer(listPart1.get(2).getAudio());
+                        setSeekBar();
+                        break;
+                    case 3:
+                        index = 3;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 4:");
+                        img_part1.setImageResource(listPart1.get(3).getImages());
+                        playMediaPlayer(listPart1.get(3).getAudio());
+                        setSeekBar();
+                        break;
+                    case 4:
+                        index = 4;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 5:");
+                        img_part1.setImageResource(listPart1.get(4).getImages());
+                        playMediaPlayer(listPart1.get(4).getAudio());
+                        setSeekBar();
+                        break;
+                    case 5:
+                        index = 5;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 6:");
+                        img_part1.setImageResource(listPart1.get(5).getImages());
+                        playMediaPlayer(listPart1.get(5).getAudio());
+                        setSeekBar();
+                        break;
+                    case 6:
+                        index = 6;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 7:");
+                        img_part1.setImageResource(listPart1.get(6).getImages());
+                        playMediaPlayer(listPart1.get(6).getAudio());
+                        setSeekBar();
+                        break;
+                    case 7:
+                        index = 7;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 8:");
+                        img_part1.setImageResource(listPart1.get(7).getImages());
+                        playMediaPlayer(listPart1.get(7).getAudio());
+                        setSeekBar();
+                        break;
+                    case 8:
+                        index = 8;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 9:");
+                        img_part1.setImageResource(listPart1.get(8).getImages());
+                        playMediaPlayer(listPart1.get(8).getAudio());
+                        setSeekBar();
+                        break;
+                    case 9:
+                        index = 9;
+                        mediaPlayer.stop();
+                        txtQuestion.setText("Quesiton 10:");
+                        img_part1.setImageResource(listPart1.get(9).getImages());
+                        playMediaPlayer(listPart1.get(9).getAudio());
+                        setSeekBar();
+                        break;
+                }
+            }
+        });
+        AlertDialog dialog = builder.create();
         dialog.show();
     }
 
@@ -322,52 +347,51 @@ public class practice_part1 extends AppCompatActivity {
 
             if(mediaPlayer.isPlaying() == false) {
 //                answer.add()
-                if(index < listPart1.size()) {
-                    save(index);
-                    editor.putString(String.valueOf(index), "A");
-                    index++;
+                if(index < 10) {
+                    save();
+                    txtQuestion.setText("Quesiton "+(index+1)+":");
                     mediaPlayer.stop();
-                    btnPrevious.setEnabled(true);
                     img_part1.setImageResource(listPart1.get(index).getImages());
                     playMediaPlayer(listPart1.get(index).getAudio());
                     setSeekBar();
                     clearCheck();
+                    index++;
                 } else {
                     Toast.makeText(practice_part1.this, "Finish practice part1", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         }
     }
 
-    public void save(final int index)
+    public void save()
     {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId){
                     case R.id.radioOptionA:
-                        editor.putString(String.valueOf(index), "A");
+                        listAnwer[index] = "A";
+//                        editor.putString(String.valueOf(index), "A");
                         // do operations specific to this selection
                         break;
                     case R.id.radioOptionB:
-                        editor.putString(String.valueOf(index), "B");
+                        listAnwer[index] = "B";
+//                        editor.putString(String.valueOf(index), "B");
                         // do operations specific to this selection
                         break;
                     case R.id.radioOptionC:
-                        editor.putString(String.valueOf(index), "C");
+                        listAnwer[index] = "C";
+//                        editor.putString(String.valueOf(index), "C");
                         // do operations specific to this selection
                         break;
                     case R.id.radioOptionD:
-                        editor.putString(String.valueOf(index), "D");
+                        listAnwer[index] = "D";
+//                        editor.putString(String.valueOf(index), "D");
                         // do operations specific to this selection
                         break;
                 }
                 totalAnswer++;
                 editor.commit();
-                Log.d("option", sharedPreferences.getString(String.valueOf(index), ""));
-
             }
         });
 
@@ -377,7 +401,6 @@ public class practice_part1 extends AppCompatActivity {
     {
         radioGroup.clearCheck();
     }
-
 
 
 }

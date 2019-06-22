@@ -66,4 +66,8 @@ public class Common {
         Toast.makeText(view, message, time).show();
     }
 
+    public String getPart2() {
+        String url = "http://" + ip + "/laravel/public/part2";
+        return url;
+    }
 }
